@@ -244,7 +244,7 @@ npm test
 
 ## 10. Demo Video Link
 
-- **Walkthrough Video:** [VIDEO DEMO LINK: https://youtu.be/sentinel-midnight-demo] *(To be recorded and linked)*
+- **Walkthrough Video:** [Watch Sentinel Demo Video](https://drive.google.com/file/d/1dQbMzblb1cVlNqWSfu0VMIyQo7xk08Zs/view?usp=drivesdk)
 
 ---
 
