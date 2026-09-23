@@ -114,11 +114,16 @@ export const EligibilityCard: React.FC<EligibilityCardProps> = ({
 
         <div className="p-3 border border-editorial-border dark:border-editorial-borderDark">
           <div className="text-[10px] text-editorial-muted dark:text-editorial-mutedDark uppercase tracking-wider mb-1">
-            CIRCUIT DIGEST
+            CONTRACT ADDRESS (PREPROD)
           </div>
-          <div className="text-editorial-ink dark:text-editorial-inkDark font-mono text-[11px]">
-            0x9a4e7c1d3f5b8a0c2e4f6a8b1d3c5e7a9b0c2e4f
-          </div>
+          <a
+            href="https://explorer.midnight.network/contract/0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae"
+            target="_blank"
+            rel="noreferrer"
+            className="text-editorial-accent hover:underline font-mono text-[11px] break-all block"
+          >
+            0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae ↗
+          </a>
         </div>
 
         <div className="p-3 border border-editorial-border dark:border-editorial-borderDark">
