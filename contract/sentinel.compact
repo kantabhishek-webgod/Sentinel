@@ -1,0 +1,182 @@
+// ============================================================================
+// Sentinel: Zero-Knowledge Age & Eligibility Gate Smart Contract
+// Program: RiseIn "New Moon to Full: Monthly Moonshots on Midnight"
+// Level: Level 3 - First Quarter Submission
+// Project: Sentinel
+// Tagline: "Standing guard over what shouldn't be seen."
+// Author: kantabhishek-webgod
+// ============================================================================
+
+module Sentinel {
+  import CompactStandardLibrary;
+
+  // ==========================================================================
+  // PUBLIC LEDGER STATE (Midnight Consensus Domain)
+  // ==========================================================================
+  // PRIVACY ARCHITECTURAL DECISION 1:
+  // All fields declared within the 'ledger' block are publicly verifiable across
+  // all nodes and observers in the Midnight network.
+  //
+  // Therefore, the user's raw age, birthdate, identity documents, or timestamp
+  // of birth are STRICTLY FORBIDDEN from ever being written here.
+  //
+  // The ledger stores ONLY:
+  // 1. admin: Contract governance address.
+  // 2. minimumAgeThreshold: Public requirement (e.g. 18).
+  // 3. verifications: Mapping from wallet Address => VerificationRecord.
+  //    (Contains boolean isEligible, thresholdTested, timestamp, proofCommitment)
+  // 4. totalEligibleCount: Aggregate counter of verified adults.
+  // 5. protocolVersion: Protocol schema version.
+  // ==========================================================================
+  export ledger {
+    // Protocol deployer / governance authority
+    admin: Cell<Address>,
+
+    // The public eligibility threshold required by the gate (e.g. 18 or 21)
+    minimumAgeThreshold: Cell<Uint<32>>,
+
+    // Public ledger mapping: User Address => Immutable Verification Attestation
+    // Exposes ONLY the binary outcome (isEligible) - never the underlying witness value
+    verifications: Map<Address, VerificationRecord>,
+
+    // Public aggregate counter of successfully verified wallets
+    totalEligibleCount: Cell<Uint<64>>,
+
+    // Protocol state version tracking
+    protocolVersion: Cell<Uint<32>>
+  }
+
+  // ==========================================================================
+  // PUBLIC DATA STRUCTURES
+  // ==========================================================================
+  // PRIVACY ARCHITECTURAL DECISION 2:
+  // The VerificationRecord struct represents the selective disclosure payload.
+  // An observer or relying third-party dApp can verify whether a wallet is
+  // eligible without gaining any knowledge regarding whether the user is 19,
+  // 35, or 72 years old.
+  // ==========================================================================
+  export struct VerificationRecord {
+    // Boolean attestation: true if age >= threshold; false otherwise
+    isEligible: Boolean,
+    // The public threshold that was verified against
+    thresholdTested: Uint<32>,
+    // Unix epoch timestamp of on-chain recording
+    timestamp: Uint<64>,
+    // Tamper-proof cryptographic commitment linking the proof to the session
+    proofCommitment: Bytes<32>
+  }
+
+  // ==========================================================================
+  // PRIVATE WITNESS INTERFACE (Client Memory Domain)
+  // ==========================================================================
+  // PRIVACY ARCHITECTURAL DECISION 3:
+  // Functions declared with the 'witness' keyword execute STRICTLY in the
+  // user's private client environment (local browser WebAssembly or node runtime).
+  //
+  // The values returned by witnesses:
+  // 1. NEVER traverse the network in unencrypted or raw form.
+  // 2. Are NEVER serialized into the transaction body or block headers.
+  // 3. Are used solely as secret witness wires in the arithmetic circuit
+  //    to synthesize the ZK-SNARK proof.
+  // ==========================================================================
+  witness getPrivateAge(): Uint<32>;
+  witness getUserAddress(): Address;
+  witness getProofEntropy(): Bytes<32>;
+
+  // ==========================================================================
+  // CONSTRUCTOR CIRCUIT
+  // ==========================================================================
+  // Initializes Sentinel on Midnight devnet/testnet.
+  // Sets the default compliance threshold (e.g., 18).
+  // ==========================================================================
+  export circuit constructor(initialThreshold: Uint<32>): [] {
+    // Enforce reasonable numeric threshold boundaries
+    assert(initialThreshold > 0 && initialThreshold < 150, "Invalid age threshold");
+
+    // Initialize public ledger cells
+    admin = own_address();
+    minimumAgeThreshold = initialThreshold;
+    totalEligibleCount = 0;
+    protocolVersion = 1;
+  }
+
+  // ==========================================================================
+  // ADMIN GOVERNANCE CIRCUITS
+  // ==========================================================================
+  // Allows governance to update the age threshold (e.g., 18 -> 21 for jurisdiction change)
+  // ==========================================================================
+  export circuit updateThreshold(newThreshold: Uint<32>): [] {
+    assert(own_address() == admin, "Unauthorized: Only Sentinel admin can adjust threshold");
+    assert(newThreshold > 0 && newThreshold < 150, "Threshold must be between 1 and 150");
+    minimumAgeThreshold = newThreshold;
+  }
+
+  // ==========================================================================
+  // ZERO-KNOWLEDGE PROOF VERIFICATION CIRCUIT
+  // ==========================================================================
+  // PRIVACY ARCHITECTURAL DECISION 4:
+  // The core zero-knowledge age verification gate:
+  //
+  // 1. Reads privateAge from client witness memory (NEVER exposed to verifier).
+  // 2. Enforces sane bounds inside the private circuit [1..150].
+  // 3. Reads public minimumAgeThreshold from the Midnight ledger.
+  // 4. Executes arithmetic inequality check: `isEligible = (privateAge >= threshold)`.
+  // 5. Hashes the user address and client entropy into a 32-byte commitment.
+  // 6. Commits ONLY the boolean result and commitment to the public ledger.
+  //
+  // Mathematical Guarantee:
+  // Given proof $\pi$, the verifier checks:
+  //   $V(vk, \pi, [threshold, caller, commitment, isEligible]) == true$
+  // The verifier learns nothing about $privateAge$ other than that it satisfies
+  // the binary relation relative to $threshold$.
+  // ==========================================================================
+  export circuit verifyAgeEligibility(): Boolean {
+    // Step 1: Ingest private witness inputs inside the ZK prover sandbox
+    const privateAge: Uint<32> = getPrivateAge();
+    const caller: Address = getUserAddress();
+    const entropy: Bytes<32> = getProofEntropy();
+
+    // Circuit constraint: validate realistic human age range
+    assert(privateAge > 0 && privateAge < 150, "Witness age out of human boundary");
+
+    // Step 2: Ingest public parameter from consensus ledger
+    const threshold: Uint<32> = minimumAgeThreshold;
+
+    // Step 3: Zero-Knowledge Arithmetic Comparison
+    // The prover demonstrates satisfaction of this inequality without disclosing privateAge
+    const isEligible: Boolean = (privateAge >= threshold);
+
+    // Compute cryptographic commitment hash for tamper-proofing
+    const commitment: Bytes<32> = hash_sha256(concat(caller, entropy));
+
+    // Step 4: Write attestation to public ledger
+    // Notice: `privateAge` is completely omitted from the public VerificationRecord
+    const record: VerificationRecord = VerificationRecord {
+      isEligible: isEligible,
+      thresholdTested: threshold,
+      timestamp: current_timestamp(),
+      proofCommitment: commitment
+    };
+
+    verifications[caller] = record;
+
+    if (isEligible) {
+      totalEligibleCount = totalEligibleCount + 1;
+    }
+
+    return isEligible;
+  }
+
+  // ==========================================================================
+  // PUBLIC QUERY CIRCUITS
+  // ==========================================================================
+  // Query verification attestation for any target address
+  export circuit queryStatus(user: Address): VerificationRecord {
+    return verifications[user];
+  }
+
+  // Query active minimum age threshold
+  export circuit getThreshold(): Uint<32> {
+    return minimumAgeThreshold;
+  }
+}
