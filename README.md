@@ -1,7 +1,7 @@
 # Sentinel
 
 [![Sentinel CI Pipeline](https://github.com/kantabhishek-webgod/Sentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/kantabhishek-webgod/Sentinel/actions/workflows/ci.yml)
-[![Midnight Network](https://img.shields.io/badge/Midnight-Devnet%20%2F%20Preprod-8A2BE2.svg)](https://midnight.network)
+[![Midnight Network](https://img.shields.io/badge/Midnight-Devnet%200.18-8A2BE2.svg)](https://midnight.network)
 [![Smart Contract](https://img.shields.io/badge/Language-Compact%200.18-orange.svg)](https://docs.midnight.network)
 [![Tests Passing](https://img.shields.io/badge/Tests-18%20Passing-brightgreen.svg)](tests/)
 [![Proposal Document](https://img.shields.io/badge/Proposal-PROPOSAL.md-blue.svg)](PROPOSAL.md)
@@ -12,8 +12,7 @@
 **Sentinel** is a production-grade Zero-Knowledge Age and Eligibility Gate built on the **Midnight blockchain** using the **Compact smart contract language**. Developed for **Level 3 - First Quarter Submission** of RiseIn's *"New Moon to Full: Monthly Moonshots on Midnight"* program.
 
 - 📄 **Full Technical Proposal:** See [PROPOSAL.md](PROPOSAL.md) for executive summary, mathematical specifications, regulatory compliance (GDPR/CCPA/UK Online Safety Act), and market analysis.
-- 🌐 **Midnight Preprod Deployed Contract:** [`0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae`](https://explorer.midnight.network/contract/0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae)
-- 🔍 **Midnight Block Explorer Link:** [View Contract on Explorer](https://explorer.midnight.network/contract/0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae)
+- ⚙️ **Contract Deployment:** Compact v0.18 deployed on Midnight Devnet / Local Genesis (`0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae`).
 
 ---
 

@@ -57,15 +57,10 @@ export const Header: React.FC<HeaderProps> = ({
             <Shield className="w-3.5 h-3.5" />
             <span>SELECTIVE DISCLOSURE MODEL</span>
           </button>
-          <a
-            href="https://explorer.midnight.network/contract/0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center space-x-1.5 text-editorial-muted dark:text-editorial-mutedDark hover:text-editorial-accent transition-colors"
-          >
+          <div className="flex items-center space-x-1.5 text-editorial-muted dark:text-editorial-mutedDark">
             <Circle className="w-2 h-2 fill-emerald-500 text-emerald-500 animate-pulse" />
-            <span>PREPROD / DEVNET EXPLORER</span>
-          </a>
+            <span>MIDNIGHT DEVNET</span>
+          </div>
         </div>
 
         {/* Right Actions */}
