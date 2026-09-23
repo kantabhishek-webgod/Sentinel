@@ -216,29 +216,17 @@ npm test
 
 ## 8. Screenshots
 
-[SCREENSHOT: Sentinel Swiss Minimalist Hero & Landing Section]
-*(Landing section showcasing "Standing guard over what shouldn't be seen." in confident editorial typography, watchtower emblem, and protocol specs)*
+- **CI/CD Workflow Pipeline:**  
+  ![CI CD Workflow](image.png)
 
-[SCREENSHOT: Step-by-Step Age Verification Gate with RAM Isolation]
-*(Interactive verification flow showing client memory boundary and private numeric input)*
-
-[SCREENSHOT: Quiet Linear Progress Indicator during ZK-SNARK Proving]
-*(Precise, non-flashy progress bar illustrating witness synthesis, polynomial constraints, and ledger broadcast)*
-
-[SCREENSHOT: Verified Eligibility Attestation Card]
-*(High-contrast typographic credential displaying on-chain status, commitment hash, and zero private leakage)*
-
-[SCREENSHOT: How Sentinel Stays Private — Selective Disclosure Modal]
-*(Interactive comparison table detailing what observers can vs cannot learn)*
-
-[SCREENSHOT: Midnight Ledger Explorer]
-*(Live ledger explorer querying addresses and displaying recent on-chain verification records)*
+- **Test Suite (18 Tests Passing):**  
+  ![3+ Tests Passed](image-1.png)
 
 ---
 
 ## 9. Live Demo Link
 
-- **Live Application:** [SCREENSHOT / DEMO LINK: https://sentinel-midnight.vercel.app] *(To be configured upon hosting)*
+- **Live Application:** [https://sentinel-mu-vert.vercel.app/](https://sentinel-mu-vert.vercel.app/)
 
 ---
 
