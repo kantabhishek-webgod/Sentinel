@@ -216,10 +216,10 @@ npm test
 
 ## 8. Screenshots
 
-- **CI/CD Workflow Pipeline:**  
+- **CI/CD Workflow:**  
   ![CI CD Workflow](image.png)
 
-- **Test Suite (18 Tests Passing):**  
+- **3+ Tests Passed:**  
   ![3+ Tests Passed](image-1.png)
 
 ---
