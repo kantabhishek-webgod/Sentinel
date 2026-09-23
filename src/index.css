@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-canvas: #FAFAF9;
+    --border-color: #E7E5E4;
+    --text-primary: #121316;
+    --text-muted: #6B7280;
+    --accent: #D83A20;
+  }
+
+  .dark {
+    --bg-canvas: #0D0E11;
+    --border-color: #23262F;
+    --text-primary: #F3F4F6;
+    --text-muted: #9CA3AF;
+    --accent: #D83A20;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Swiss Editorial Hairline Utilities */
+.hairline-b {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--border-color);
+}
+
+.hairline-r {
+  border-right: 1px solid var(--border-color);
+}
+
+.hairline-l {
+  border-left: 1px solid var(--border-color);
+}
+
+.hairline-box {
+  border: 1px solid var(--border-color);
+}
+
+/* Linear Quiet Progress Bar */
+@keyframes progressPulse {
+  0% { transform: scaleX(0.05); }
+  50% { transform: scaleX(0.7); }
+  100% { transform: scaleX(1); }
+}
+
+.animate-quiet-progress {
+  animation: progressPulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  transform-origin: left;
+}
+
+/* Precise Mono Numbers */
+.tabular-data {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Minimal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
