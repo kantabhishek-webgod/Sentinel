@@ -20,7 +20,16 @@ import * as Rx from 'rxjs';
 
 async function main() {
   console.log("Starting deployment to Preprod...");
-  let seed = process.env.WALLET_SEED;
+  let seed = process.env.WALLET_SEED?.trim();
+  if (seed && seed.includes(' ')) {
+    try {
+      const bip39 = await import('bip39');
+      seed = bip39.mnemonicToEntropy(seed);
+      console.log("Converted 24-word mnemonic to 32-byte hex entropy master seed.");
+    } catch (e: any) {
+      console.warn("Mnemonic conversion fallback:", e.message);
+    }
+  }
   if (!seed) {
     seed = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
     console.log("Notice: WALLET_SEED secret not provided. Using deterministic fallback wallet seed.");
