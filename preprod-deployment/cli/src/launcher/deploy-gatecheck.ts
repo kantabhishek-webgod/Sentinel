@@ -22,11 +22,8 @@ async function main() {
   console.log("Starting deployment to Preprod...");
   let seed = process.env.WALLET_SEED;
   if (!seed) {
-    console.warn("Notice: WALLET_SEED environment variable is not set. Generating fallback wallet seed...");
-    const randomBytes = new Uint8Array(32);
-    crypto.getRandomValues(randomBytes);
-    seed = Array.from(randomBytes).map(b => b.toString(16).padStart(2, '0')).join('');
-    console.log("Generated fresh wallet seed. Will request faucet funds if balance is 0.");
+    seed = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+    console.log("Notice: WALLET_SEED secret not provided. Using deterministic fallback wallet seed.");
   }
   
   const config = new PreprodRemoteConfig();
@@ -59,26 +56,38 @@ async function main() {
 
   if (nightBalance === 0n) {
     console.log("Wallet has 0 tNIGHT. Requesting funds from faucet...");
-    if (envConfiguration.faucet) {
-      try {
-        await new FaucetClient(envConfiguration.faucet, logger).requestTokens(walletAddress);
-        console.log("Faucet request sent successfully. Waiting for tokens...");
-      } catch (e: any) {
-        console.warn(`Faucet request warning: ${e.message}`);
+    const requestFaucetTokens = async () => {
+      if (envConfiguration.faucet) {
+        try {
+          await new FaucetClient(envConfiguration.faucet, logger).requestTokens(walletAddress);
+          console.log(`[${new Date().toLocaleTimeString()}] Faucet request sent for address: ${walletAddress}`);
+        } catch (e: any) {
+          console.warn(`Faucet request attempt warning: ${e.message}`);
+        }
       }
+    };
+
+    await requestFaucetTokens();
+
+    const faucetInterval = setInterval(() => {
+      void requestFaucetTokens();
+    }, 60000);
+
+    try {
+      unshieldedState = await Rx.firstValueFrom(
+        walletProvider.wallet.unshielded.state.pipe(
+          Rx.throttleTime(5000),
+          Rx.tap((state) => {
+            const bal = state.balances[unshieldedToken().raw] ?? 0n;
+            console.log(`Waiting for tokens... current balance: ${bal} tNIGHT`);
+          }),
+          Rx.filter((state) => (state.balances[unshieldedToken().raw] ?? 0n) > 0n),
+          Rx.timeout(900000)
+        )
+      );
+    } finally {
+      clearInterval(faucetInterval);
     }
-    
-    unshieldedState = await Rx.firstValueFrom(
-      walletProvider.wallet.unshielded.state.pipe(
-        Rx.throttleTime(5000),
-        Rx.tap((state) => {
-          const bal = state.balances[unshieldedToken().raw] ?? 0n;
-          console.log(`Waiting for tokens... current balance: ${bal} tNIGHT`);
-        }),
-        Rx.filter((state) => (state.balances[unshieldedToken().raw] ?? 0n) > 0n),
-        Rx.timeout(300000)
-      )
-    );
     nightBalance = unshieldedState.balances[unshieldedToken().raw] ?? 0n;
     console.log(`Received funds! New balance: ${nightBalance} tNIGHT`);
   }
