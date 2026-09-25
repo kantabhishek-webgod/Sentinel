@@ -40,10 +40,11 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({ lastUpdated }) =
   return (
     <section className="w-full max-w-4xl mx-auto px-6 py-12 hairline-t">
       {/* Explorer Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 hairline-b">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 hairline-b">
         <div>
-          <span className="text-[10px] font-mono tracking-widest text-editorial-accent uppercase block mb-1">
-            ON-CHAIN STATE
+          <span className="text-[10px] font-mono tracking-widest text-emerald-600 dark:text-emerald-400 uppercase block mb-1 font-semibold flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            ON-CHAIN • MIDNIGHT PREPROD
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl text-editorial-ink dark:text-editorial-inkDark">
             Midnight Ledger Explorer
@@ -54,6 +55,24 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({ lastUpdated }) =
           <span>•</span>
           <span>THRESHOLD: <strong className="text-editorial-ink dark:text-editorial-inkDark">{ledgerState.minimumAgeThreshold}Y</strong></span>
         </div>
+      </div>
+
+      {/* On-Chain Contract Address Banner */}
+      <div className="mb-6 p-3 bg-neutral-50 dark:bg-neutral-900/60 border border-editorial-border dark:border-editorial-borderDark flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+        <div className="flex items-center gap-2 overflow-hidden">
+          <span className="text-[10px] uppercase tracking-wider text-editorial-muted dark:text-editorial-mutedDark font-semibold shrink-0">CONTRACT:</span>
+          <span className="font-mono text-editorial-ink dark:text-editorial-inkDark truncate text-[11px]" title="171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42">
+            171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42
+          </span>
+        </div>
+        <a
+          href="https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 px-3 py-1 bg-editorial-ink dark:bg-editorial-inkDark text-editorial-bg dark:text-editorial-bgDark text-[11px] uppercase tracking-wider hover:bg-editorial-accent hover:text-white transition-colors shrink-0"
+        >
+          View On Explorer ↗
+        </a>
       </div>
 
       {/* Query Search Bar */}

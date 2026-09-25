@@ -12,7 +12,10 @@
 **Sentinel** is a production-grade Zero-Knowledge Age and Eligibility Gate built on the **Midnight blockchain** using the **Compact smart contract language**. Developed for **Level 3 - First Quarter Submission** of RiseIn's *"New Moon to Full: Monthly Moonshots on Midnight"* program.
 
 - 📄 **Full Technical Proposal:** See [PROPOSAL.md](PROPOSAL.md) for executive summary, mathematical specifications, regulatory compliance (GDPR/CCPA/UK Online Safety Act), and market analysis.
-- ⚙️ **Contract Deployment:** Compact v0.18 deployed on Midnight Devnet / Local Genesis (`0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae`).
+- ⚙️ **On-Chain Preprod Contract Deployment:** Verified & Deployed on **Midnight Preprod** via GitHub Actions CI pipeline.
+  - **Contract Address:** [`171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42`](https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
+  - **Midnight Explorer:** [https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42](https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
+  - **CI Deployment Run:** [Deploy to Preprod #36112967632 (Success)](https://github.com/kantabhishek-webgod/Sentinel/actions/runs/36112967632)
 
 ---
 
@@ -22,8 +25,9 @@
 - **Tagline:** *"Standing guard over what shouldn't be seen."*
 - **Program Track:** Level 3 — First Quarter Submission (RiseIn Monthly Moonshots on Midnight)
 - **Approved Idea:** Age / Eligibility Gate — Proving a private numeric attribute (age $\ge 18$) without ever revealing the actual value on-chain or to any observer.
-- **Contract Address (Preprod / Devnet):** `0x7f4a21c99fbd8e32c842b10a9901ef45b23d91ae`
-- **Deployment Transaction Hash:** `0x8b2c4d6e8f0a2c4e6a8b0c2d4e6f8a0b2c4d6e8f0a2c4e6a8b0c2d4e6f8a0b2c`
+- **Network:** Midnight Preprod
+- **Contract Address:** [`171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42`](https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
+- **Midnight Block Explorer URL:** [https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42](https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
 
 ---
 
