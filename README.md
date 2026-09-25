@@ -13,8 +13,8 @@
 
 - 📄 **Full Technical Proposal:** See [PROPOSAL.md](PROPOSAL.md) for executive summary, mathematical specifications, regulatory compliance (GDPR/CCPA/UK Online Safety Act), and market analysis.
 - ⚙️ **On-Chain Preprod Contract Deployment:** Verified & Deployed on **Midnight Preprod** via GitHub Actions CI pipeline.
-  - **Contract Address:** [`171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42`](https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
-  - **Midnight Explorer:** [https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42](https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
+  - **Contract Address:** [`171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42`](https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
+  - **Midnight Explorer:** [https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42](https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
   - **CI Deployment Run:** [Deploy to Preprod #36112967632 (Success)](https://github.com/kantabhishek-webgod/Sentinel/actions/runs/36112967632)
 
 ---
@@ -26,8 +26,8 @@
 - **Program Track:** Level 3 — First Quarter Submission (RiseIn Monthly Moonshots on Midnight)
 - **Approved Idea:** Age / Eligibility Gate — Proving a private numeric attribute (age $\ge 18$) without ever revealing the actual value on-chain or to any observer.
 - **Network:** Midnight Preprod
-- **Contract Address:** [`171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42`](https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
-- **Midnight Block Explorer URL:** [https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42](https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
+- **Contract Address:** [`171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42`](https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
+- **Midnight Block Explorer URL:** [https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42](https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42)
 
 ---
 

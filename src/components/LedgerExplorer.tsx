@@ -66,7 +66,7 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({ lastUpdated }) =
           </span>
         </div>
         <a
-          href="https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42"
+          href="https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 px-3 py-1 bg-editorial-ink dark:bg-editorial-inkDark text-editorial-bg dark:text-editorial-bgDark text-[11px] uppercase tracking-wider hover:bg-editorial-accent hover:text-white transition-colors shrink-0"

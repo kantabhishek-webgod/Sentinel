@@ -1,7 +1,7 @@
 {
   "contractName": "Sentinel",
   "contractAddress": "171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42",
-  "explorerUrl": "https://preprod.midnight.network/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42",
+  "explorerUrl": "https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42",
   "network": "preprod",
   "indexer": "https://indexer.preprod.midnight.network/api/v4/graphql",
   "node": "https://rpc.preprod.midnight.network",
