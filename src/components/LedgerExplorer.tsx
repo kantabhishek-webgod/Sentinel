@@ -61,12 +61,12 @@ export const LedgerExplorer: React.FC<LedgerExplorerProps> = ({ lastUpdated }) =
       <div className="mb-6 p-3 bg-neutral-50 dark:bg-neutral-900/60 border border-editorial-border dark:border-editorial-borderDark flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
         <div className="flex items-center gap-2 overflow-hidden">
           <span className="text-[10px] uppercase tracking-wider text-editorial-muted dark:text-editorial-mutedDark font-semibold shrink-0">CONTRACT:</span>
-          <span className="font-mono text-editorial-ink dark:text-editorial-inkDark truncate text-[11px]" title="171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42">
-            171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42
+          <span className="font-mono text-editorial-ink dark:text-editorial-inkDark truncate text-[11px]" title="0x171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42">
+            0x171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42
           </span>
         </div>
         <a
-          href="https://preprod.midnightexplorer.com/contract/171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42"
+          href="https://preprod.midnightexplorer.com/contracts/0x171167e62bac7ce43414b8fa8dc46aa28225087e0f1b590c31153d530a3cdd42"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 px-3 py-1 bg-editorial-ink dark:bg-editorial-inkDark text-editorial-bg dark:text-editorial-bgDark text-[11px] uppercase tracking-wider hover:bg-editorial-accent hover:text-white transition-colors shrink-0"
